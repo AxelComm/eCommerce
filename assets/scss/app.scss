@@ -1,0 +1,83 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Mogra&family=Oleo+Script&family=Roboto+Condensed:ital@1&family=Roboto+Flex&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+body{
+  background-color: #fcfcfc;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.deco{
+
+  margin-left: 5%;
+}
+
+nav ul li ul li a.deconex:hover{
+  background-color: rgba(248, 4, 4, 0.69);
+  color: #fff;
+
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  padding: 0;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  width: 100%;
+}
+
+nav ul li ul li a {
+  padding: 10px;
+  color: #333;
+}
+
+nav ul li ul li a:hover {
+  background-color: #f4f4f4;
+}
+
+/* Ceci est un commentaire CSS sur une seule ligne */
+
+
+#style{
+  box-shadow:.8rem .8rem 1.4rem #c8d0e7,
+  -.2rem -.2rem 1.8rem #FFFFFF;
+
+  background-color: #fafafa;
+}
+
+
+
+
+
+
+
+
+
+
+

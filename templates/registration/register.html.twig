@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+    <h3>Infomartion : </h3>
+    {{ form_row(registrationForm.pseudo, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.email, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.nom, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.prenom, {'attr': {'class': 'nomDeLaClasse'}}) }}
+
+    <h3>Adresse de livraison : </h3>
+    {{ form_row(registrationForm.naissance, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.adresse_numero, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.adresse_rue, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.adresse_cp, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.adresse_ville, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    {{ form_row(registrationForm.adresse_pays, {'attr': {'class': 'nomDeLaClasse'}}) }}
+
+
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Valider</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
