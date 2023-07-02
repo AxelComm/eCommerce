@@ -32,19 +32,19 @@ class RegistrationFormType extends AbstractType
             ->add('naissance', DateType::class,[
                 'label' => 'Date de naissance :'
             ])
-            ->add('adresse_rue', TextType::class, [
+            ->add('rue_adresse', TextType::class, [
                 'label' => 'Nom de rue :'
             ])
-            ->add('adresse_numero',TextType::class, [
+            ->add('numero_adresse',TextType::class, [
                 'label'=> 'Numero de rue :'
             ] )
-            ->add('adresse_cp', TextType::class, [
+            ->add('cp_adresse', TextType::class, [
                 'label' => 'Code postal : '
             ])
-            ->add('adresse_ville',TextType::class, [
+            ->add('ville_adresse',TextType::class, [
                 'label' => 'Ville :'
             ])
-            ->add('adresse_pays', TextType::class, [
+            ->add('pays_adresse', TextType::class, [
                 'label' => 'Pays :'
             ])
             ->add('email', TextType::class,[
@@ -71,7 +71,7 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
+                        // taille maximal pour des raisons de securité
                         'max' => 4096,
                     ]),
                 ],

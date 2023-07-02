@@ -3,13 +3,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Mogra&family=Oleo+Script&family=Roboto+Condensed:ital@1&family=Roboto+Flex&family=Roboto:ital,wght@0,400;1,300&display=swap');
 
 body{
-  background-color: #fcfcfc;
+  background:  #E4EBF5;
   font-family: 'Fjalla One', sans-serif;
 }
 
 .deco{
 
   margin-left: 5%;
+}
+
+nav{
+  background:  #E4EBF5;
+  border-bottom: 1px solid white;
+
 }
 
 nav ul li ul li a.deconex:hover{
@@ -68,7 +74,7 @@ nav ul li ul li a:hover {
   box-shadow:.8rem .8rem 1.4rem #c8d0e7,
   -.2rem -.2rem 1.8rem #FFFFFF;
 
-  background-color: #fafafa;
+  background:  #E4EBF5;
 }
 
 

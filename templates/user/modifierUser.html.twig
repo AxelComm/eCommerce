@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifiez votre profil ici{% endblock %}
+
+{% block body %}
+<div class="formModifier">
+    <div class="form-container">
+        <h1>Formulaire de modification</h1>
+
+        <h3>Infomartion : </h3>
+        {{ form_start(form) }}
+        <div class="label">
+            {{ form_row(form.pseudo) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.email) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.nom) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.prenom) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.naissance) }}
+        </div>
+
+        <h3>Adresse de livraison : </h3>
+        <div class="label">
+            {{ form_row(form.numero_adresse) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.rue_adresse) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.cp_adresse) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.ville_adresse) }}
+        </div>
+        <div class="label">
+            {{ form_row(form.pays_adresse) }}
+        </div>
+
+        <div class="buttonmodif">
+        <button type="submit" class="btn">Modifier</button>
+        </div>
+
+
+        {{ form_end(form) }}
+
+    </div>
+</div>
+{% endblock %}

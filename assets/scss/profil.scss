@@ -1,0 +1,168 @@
+/*visualiser profil*/
+
+section.py-5 {
+  background:  #E4EBF5;
+  padding: 40px 0;
+}
+
+.compte{
+  text-align: center;
+}
+
+/* Conteneur principal */
+#styleinsert.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background:  #E4EBF5;
+  box-shadow:  inset .2rem .2rem .5rem #c8d0e7,
+  inset -.2rem -.2rem .5rem #FFFFFF;
+  border-radius: 5px;
+}
+
+/* En-tête */
+.row h2.display-5 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Informations utilisateur */
+.row p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Boutons Modifier et Supprimer */
+.row .d-flex {
+  margin-top: 30px;
+}
+
+.row .d-flex .modif{
+  font-size: 18px;
+  background:  #E4EBF5;
+  box-shadow:   .2rem .2rem .5rem #c8d0e7,
+   -.2rem -.2rem .5rem #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.row .d-flex .modif:active{
+  box-shadow:  inset .2rem .2rem .5rem #c8d0e7,
+  inset -.2rem -.2rem .5rem #FFFFFF;
+}
+
+
+.row .d-flex .supprimer {
+  font-size: 18px;
+  color: #e70b0b;
+  background:  #E4EBF5;
+  box-shadow:   .2rem .2rem .5rem #c8d0e7,
+  -.2rem -.2rem .5rem #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.row .d-flex .supprimer:active {
+  box-shadow:  inset .2rem .2rem .5rem #c8d0e7,
+  inset -.2rem -.2rem .5rem #FFFFFF;
+}
+
+
+.lesBouttons{
+  display: flex;
+  justify-content: center;
+}
+
+
+/* modifier profil */
+
+.formModifier {
+  background:  #E4EBF5;
+  padding: 40px 0;
+}
+
+/* Conteneur principal du formulaire */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/* Titre du formulaire */
+.form-container h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Sous-titre "Information" */
+.form-container h3:first-of-type {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+/* Sous-titre "Adresse de livraison" */
+.form-container h3:last-of-type {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+/* Champ de formulaire et label */
+.form-container .label {
+  margin-bottom: 15px;
+}
+
+/* Champ de formulaire */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Bouton "Modifier" */
+
+.buttonmodif{
+  display: flex;
+  justify-content: center;
+}
+
+
+.form-container .btn {
+  font-size: 18px;
+  box-shadow:   .2rem .2rem .5rem #c8d0e7,
+   -.2rem -.2rem .5rem #FFFFFF;
+  background:  #E4EBF5;
+  border: none;
+  padding: 12px 24px;
+  margin-top: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+
+}
+
+.form-container .btn:active {
+  box-shadow:  inset .2rem .2rem .5rem #c8d0e7,
+  inset -.2rem -.2rem .5rem #FFFFFF;
+}
+
