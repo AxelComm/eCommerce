@@ -1,0 +1,46 @@
+body{
+  background-color: #e2e9f3;
+  margin-top:20px;
+}
+
+h1{
+  text-align: center;
+}
+.card {
+  margin-bottom: 30px;
+}
+.card {
+  margin-top: 8%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid transparent;
+  border-radius: 0;
+}
+
+.card-body{
+  background-color: rgba(226, 233, 243, 0.56);
+}
+.card .card-subtitle {
+  font-weight: 300;
+  margin-bottom: 10px;
+  color: #8898aa;
+}
+.table-product.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f3f8fa!important
+}
+.table-product td{
+  border-top: 0px solid #dee2e6 !important;
+  color: #728299!important;
+}
+
+.descriptionarticle{
+  height: 20vh;
+}
+
+
+
