@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop{% endblock %}
+
+{% block body %}
+    <h1>Boutique</h1>
+    <div class="bodyshop">
+        <div class="container py-3">
+            <div class="row">
+                {% for produit in produits %}
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card shadow-0 border rounded-3 mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                            <img src="{{ produit.image }}" alt="" class="w-100" />
+                                            <a href="#!">
+                                                <div class="hover-overlay">
+                                                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h5>{{ produit.nom }}</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="text-danger mb-1 me-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 mb-2 text-muted small">
+                                            <span>Categorie</span>
+                                            <span class="text-primary"> • </span>
+                                        </div>
+                                        <p class="text-truncate mb-4">
+                                            {{ produit.description }}
+                                        </p>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mb-0 me-2">{{ produit.prix }} €</h4>
+                                        </div>
+                                        {% if produit.stock == true %}
+                                            <h6 class="text-success">Produit en stock</h6>
+                                        {% else %}
+                                            <h6 class="text-success">Produit en rupture</h6>
+                                        {% endif %}
+
+                                        <div class="d-flex flex-column mt-4">
+                                            <a href="{{ path('app_shop_produit', {'produit': produit.id}) }}">
+                                                <button class="btn btn-primary btn-sm" type="button">Details</button>
+                                            </a>
+                                            <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                                                Ajouter au panier
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {{ form_start(formCommentaire) }}
+    <section class="content-item" id="comments">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                    {{ form_row(formCommentaire.description, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary bouttonvalid" style="margin-top: 1%">Ajouter </button>
+                        </fieldset>
+                    </form>
+                    {{ form_end(formCommentaire) }}
+
+                    <h3>Commentaires : </h3>
+                        {% for commentaire in commentaires %}
+                            <div class="col-md-8">
+                                <div class="media g-mb-30 media-comment">
+                                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Image Description">
+                                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 cardcomm";>
+                                        <div class="g-mb-15">
+                                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ commentaire.user.pseudo }}</h5>
+                                            <span class="g-color-gray-dark-v4 g-font-size-12">{{ commentaire.createdAt|date('d/m/Y H:i:s') }}</span>
+                                        </div>
+                                        <p style="word-wrap: break-word;">{{ commentaire.description }}</p>
+                                        <ul class="list-inline d-sm-flex my-0">
+                                            <li class="list-inline-item ml-auto">
+                                                {% if commentaire.user is not null and app.user is not null and (app.user.id == commentaire.user.id) %}
+                                                    <form action="{{ path('delete_commentaire', {'id': commentaire.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+                                                        <input type="hidden" name="token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+                                                        <button class="delete" aria-label="delete">Supprimer</button>
+                                                    </form>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
