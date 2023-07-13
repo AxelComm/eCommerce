@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,6 +29,12 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('pseudo', TextType::class,[
                 'label' => 'Pseudo : '
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Image de profil : ',
+                'mapped' => false,
+                'required' => false,
+                // Autres options éventuelles
             ])
             ->add('naissance', DateType::class,[
                 'label' => 'Date de naissance :'
@@ -62,6 +69,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label'=> 'Mot de passe :',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [

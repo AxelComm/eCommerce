@@ -11,6 +11,7 @@
         <div id="styleinsert" class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                     <h2 class="display-5 fw-bolder compte">Vos informations : </h2>
+                <img src="{{ asset('/uploadImages/' ~ infoUser.image) }}" alt="User Image">
                 <p>{{ infoUser.pseudo }}</p>
                 <p>{{ infoUser.email }}</p>
                 <p>{{ infoUser.nom }} {{ infoUser.prenom }}</p>

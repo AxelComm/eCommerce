@@ -3,29 +3,188 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+    <div style="background-color: darkgreen">
     {{ form_errors(registrationForm) }}
+    </div>
 
     {{ form_start(registrationForm) }}
-    <h3>Infomartion : </h3>
-    {{ form_row(registrationForm.pseudo, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.email, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.nom, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.prenom, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.naissance, {'attr': {'class': 'nomDeLaClasse'}}) }}
+    <section class="h-100 h-custom gradient-custom-2" >
+        <h1>Creation de compte </h1>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <h3 class="fw-normal mb-5" style="color: #4835d4;"> Infomations </h3>
 
-    <h3>Adresse de livraison : </h3>
-    {{ form_row(registrationForm.numero_adresse, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.rue_adresse, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.cp_adresse, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.ville_adresse, {'attr': {'class': 'nomDeLaClasse'}}) }}
-    {{ form_row(registrationForm.pays_adresse, {'attr': {'class': 'nomDeLaClasse'}}) }}
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline">
+                                                {{ form_row(registrationForm.pseudo, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4 pb-2">
+
+                                                <div class="form-outline">
+                                                    {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 mb-4 pb-2">
+
+                                                <div class="form-outline">
+                                                    {{ form_row(registrationForm.prenom, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline">
+                                                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline">
+                                                {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            {{ form_row(registrationForm.image, {'attr': {'class': 'input-group mb-3'}}) }}
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline">
+                                                {{ form_row(registrationForm.naissance, {'attr': {'class': 'input-group mb-3'}}) }}
+                                            </div>
+                                        </div>
 
 
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 bg-indigo text-white">
+                                    <div class="p-5">
+                                        <h3 class="fw-normal mb-5">Adresse livraison :</h3>
 
-        <button type="submit" class="btn">Valider</button>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline form-white">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-5 mb-4 pb-2">
+
+                                                <div class="form-outline form-white">
+                                                    {{ form_row(registrationForm.numero_adresse, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-7 mb-4 pb-2">
+
+                                                <div class="form-outline form-white">
+                                                    {{ form_row(registrationForm.rue_adresse, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-5 mb-4 pb-2">
+
+                                                <div class="form-outline form-white">
+                                                    {{ form_row(registrationForm.cp_adresse, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-7 mb-4 pb-2">
+
+                                                <div class="form-outline form-white">
+                                                    {{ form_row(registrationForm.ville_adresse, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline form-white">
+                                                {{ form_row(registrationForm.pays_adresse, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                                            {{ form_row(registrationForm.agreeTerms) }}
+                                        </div>
+
+                                         <button type="submit" class="btn btn-light btn-lg">Valider</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     {{ form_end(registrationForm) }}
+
+    <style>
+
+        h1{
+            margin-top: 5%;
+        }
+        @media (min-width: 1025px) {
+            .h-custom {
+                height: 100vh !important;
+            }
+        }
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+        .card-registration .select-arrow {
+            top: 13px;
+        }
+
+        .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: #63666e;
+
+
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background-color: #e0e7f1;
+        }
+
+        .bg-indigo {
+            background-color: #caafb7;
+        }
+        @media (min-width: 992px) {
+            .card-registration-2 .bg-indigo {
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+        @media (max-width: 991px) {
+            .card-registration-2 .bg-indigo {
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+
+        .pb-2{
+            padding-bottom: 0 !important;
+        }
+    </style>
 {% endblock %}

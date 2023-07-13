@@ -59,7 +59,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/delete', name: 'delete_user')]
+    #[Route('/user/delete{id}', name: 'delete_user')]
     public function delete(
         Request                $request,
         EntityManagerInterface $entityManager,
@@ -74,6 +74,11 @@ class UserController extends AbstractController
 
         // Vérifie la validité du jeton CSRF
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('token'))) {
+            $commentaires = $user->getRelation();
+            foreach ($commentaires as $commentaire){
+                $entityManager->remove($commentaire);
+            }
+
             // Supprimer l'utilisateur
             $entityManager->remove($user);
             $entityManager->flush();
