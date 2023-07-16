@@ -5,35 +5,69 @@
 
 
 {% block body %}
-<div>
+    <section class="profil">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="{{ asset('/uploadImages/' ~ infoUser.image) }}" alt="avatar"
+                                 class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3"><strong>Pseudo:</strong> {{ infoUser.pseudo|capitalize }}</h5>
+                            <p class="text-muted mb-4">{{ infoUser.villeAdresse|capitalize }}, {{ infoUser.paysAdresse|capitalize }}</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <button type="button" class="btn btn-outline-primary ms-1"><a href="{{ path('modifier_user') }}" >Modifier</a></button>
+                                <form action="{{ path('delete_user', {'id': app.user.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+                                    <input type="hidden" name="token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+                                    <button class="btn btn-outline-primary ms-1">Supprimer</button>
+                                </form>
 
-    <section class="py-5">
-        <div id="styleinsert" class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                    <h2 class="display-5 fw-bolder compte">Vos informations : </h2>
-                <img src="{{ asset('/uploadImages/' ~ infoUser.image) }}" alt="User Image">
-                <p>{{ infoUser.pseudo }}</p>
-                <p>{{ infoUser.email }}</p>
-                <p>{{ infoUser.nom }} {{ infoUser.prenom }}</p>
-                <p>Date de naissance : {{ infoUser.naissance | date('d/m/Y')  }}</p>
-                <p>{{ infoUser.numeroAdresse }} {{ infoUser.rueAdresse }}</p>
-                <p>{{ infoUser.cpAdresse }}, {{ infoUser.villeAdresse }}</p>
-                <p>{{ infoUser.paysAdresse }}</p>
-                    <div class="d-flex lesBouttons ">
-                        <a href="{{ path('modifier_user') }}"><button type="submit" class="is-warning modif">Modifier</button></a>
-                        <form action="{{ path('delete_user', {'id': app.user.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
-                            <input type="hidden" name="token" value="{{ csrf_token('delete' ~ app.user.id) }}">
-                            <button class="supprimer">
-                                Supprimer
-                            </button>
-                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Nom Prenom</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ infoUser.nom|capitalize }} {{ infoUser.prenom|capitalize }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ infoUser.email }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Date de naissance </p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ infoUser.naissance | date('d/m/Y') }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Addresse de livraison</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ infoUser.numeroAdresse }} {{ infoUser.rueAdresse }}, {{ infoUser.cpAdresse }}, {{ infoUser.villeAdresse|capitalize }}, {{ infoUser.paysAdresse|capitalize }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
-
-
-
-
-</div>
 {% endblock %}
