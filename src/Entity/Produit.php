@@ -52,15 +52,15 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $assemblage = null;
 
-    #[ORM\ManyToMany(targetEntity: Panier::class, mappedBy: 'produit')]
-    private Collection $paniers;
-
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $categorie = null;
 
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Commande::class)]
+    private Collection $commande;
+
     public function __construct()
     {
-        $this->paniers = new ArrayCollection();
+        $this->commande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,7 +73,7 @@ class Produit
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
@@ -85,7 +85,7 @@ class Produit
         return $this->slug;
     }
 
-    public function setSlug(string $slug): static
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -97,7 +97,7 @@ class Produit
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
@@ -109,7 +109,7 @@ class Produit
         return $this->stock;
     }
 
-    public function setStock(bool $stock): static
+    public function setStock(bool $stock): self
     {
         $this->stock = $stock;
 
@@ -121,7 +121,7 @@ class Produit
         return $this->prix;
     }
 
-    public function setPrix(float $prix): static
+    public function setPrix(float $prix): self
     {
         $this->prix = $prix;
 
@@ -133,7 +133,7 @@ class Produit
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(string $image): self
     {
         $this->image = $image;
 
@@ -145,7 +145,7 @@ class Produit
         return $this->marque;
     }
 
-    public function setMarque(string $marque): static
+    public function setMarque(string $marque): self
     {
         $this->marque = $marque;
 
@@ -157,7 +157,7 @@ class Produit
         return $this->materiau;
     }
 
-    public function setMateriau(string $materiau): static
+    public function setMateriau(string $materiau): self
     {
         $this->materiau = $materiau;
 
@@ -169,7 +169,7 @@ class Produit
         return $this->couleur;
     }
 
-    public function setCouleur(string $couleur): static
+    public function setCouleur(string $couleur): self
     {
         $this->couleur = $couleur;
 
@@ -181,7 +181,7 @@ class Produit
         return $this->dimensions;
     }
 
-    public function setDimensions(string $dimensions): static
+    public function setDimensions(string $dimensions): self
     {
         $this->dimensions = $dimensions;
 
@@ -193,7 +193,7 @@ class Produit
         return $this->poids;
     }
 
-    public function setPoids(string $poids): static
+    public function setPoids(string $poids): self
     {
         $this->poids = $poids;
 
@@ -205,36 +205,9 @@ class Produit
         return $this->assemblage;
     }
 
-    public function setAssemblage(string $assemblage): static
+    public function setAssemblage(string $assemblage): self
     {
         $this->assemblage = $assemblage;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Panier>
-     */
-    public function getPaniers(): Collection
-    {
-        return $this->paniers;
-    }
-
-    public function addPanier(Panier $panier): static
-    {
-        if (!$this->paniers->contains($panier)) {
-            $this->paniers->add($panier);
-            $panier->addProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removePanier(Panier $panier): static
-    {
-        if ($this->paniers->removeElement($panier)) {
-            $panier->removeProduit($this);
-        }
 
         return $this;
     }
@@ -244,9 +217,39 @@ class Produit
         return $this->categorie;
     }
 
-    public function setCategorie(?Categorie $categorie): static
+    public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommande(): Collection
+    {
+        return $this->commande;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commande->contains($commande)) {
+            $this->commande->add($commande);
+            $commande->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commande->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getProduit() === $this) {
+                $commande->setProduit(null);
+            }
+        }
 
         return $this;
     }

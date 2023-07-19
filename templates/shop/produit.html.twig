@@ -17,7 +17,9 @@
                         {#<button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
                             <i class="fa fa-shopping-cart"></i>
                         </button>#}
-                        <button class="btn btn-primary btn-rounded">Ajouter au panier</button>
+                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                            <a href="{{ path('cart_add', {'id' : produit.id}) }}">Ajouter au panier</a>
+                        </button>
                         {#<h3 class="box-title mt-5">Key Highlights</h3>
                         <ul class="list-unstyled">
                             <li><i class="fa fa-check text-success"></i>Sturdy structure</li>

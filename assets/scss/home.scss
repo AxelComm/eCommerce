@@ -1,5 +1,6 @@
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/_reboot';
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Mogra&family=Oleo+Script&family=Oswald&family=Roboto+Condensed:ital@1&family=Roboto+Flex&family=Roboto:ital,wght@0,400;1,300&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
@@ -7,9 +8,8 @@
 
 body{
   height: fit-content;
-  background:  #E4EBF5;
+  background: #000000 !important;
   font-family: 'Roboto', sans-serif;
-
 }
 
 .deco{
@@ -18,9 +18,9 @@ body{
 }
 
 nav{
-  background: #ceb1b9;
-  border-bottom: 1px solid #bea1ab;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Paramètres de l'ombre de boîte */
+  background: #010a4c;
+  border-bottom: 1px solid #1f2286;
+  box-shadow: 0 2px 4px #3fb0f6; /* Paramètres de l'ombre de boîte */
 }
 
 nav ul li ul li a.deconex:hover{
@@ -44,8 +44,8 @@ nav ul li a {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: #333;
-  background: #ceb1b9;;
+  color: #ffffff;
+  background: #010a4b;;
 }
 
 nav ul li ul {
@@ -53,7 +53,7 @@ nav ul li ul {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #ceb1b9;;
+  background: #ceb1b9;
   padding: 0;
 }
 
@@ -68,11 +68,40 @@ nav ul li ul li {
 
 nav ul li ul li a {
   padding: 10px;
-  color: #333;
+  color: #ffffff;
 }
 
 nav ul li ul li a:hover {
   background: #ceb1b9;;
+}
+
+.navbar-nav .nav-link.active{
+  color: white !important;
+}
+
+.navbar-nav .nav-link.active{
+  color: white !important;
+}
+
+a.navbar-brand{
+  background: #40619c;
+  background: linear-gradient(to right, #40619c 0%, #3FB0F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btnnav{
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 5px #f1fdf9;
+  border-radius: 8px;
+  background-image: linear-gradient(to right, #40619c 0%, #3FB0F6 100%);
 }
 
 /* Ceci est un commentaire CSS sur une seule ligne */
@@ -97,6 +126,100 @@ button.accueil{
   background-color: #d1d8ea;
 }
 
+/* style pour les images de pub*/
+
+.corppub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pub {
+  text-align: center;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+#imagePrincipale {
+  width: 1300px;
+  height: 780px;
+  border: 1px solid black;
+}
+
+.pub img {
+  width: 200px;
+  height: 100px;
+  margin: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.butboutique{
+  position: relative;
+  height: 65px;
+  width: 210px;
+  margin: 0 40px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  background: #010a4e;
+  overflow: hidden;
+  transition: 0.6s;
+}
+
+.divbutboutique{
+  width: 100%;
+  text-align: center;
+}
+
+.butboutique a{
+  text-decoration: none;
+  color: white;
+}
+
+.butboutique a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.butboutique:before, .butboutique:after{
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;
+  height: 100%;
+  filter: blur(30px);
+  opacity: 0.4;
+  transition: 0.6s;
+}
+.butboutique:before{
+  width: 60px;
+  background: rgba(255,255,255,0.6);
+  transform: translateX(-130px) skewX(-45deg);
+}
+.butboutique:after{
+  width: 30px;
+  background: rgba(255,255,255,0.6);
+  transform: translateX(-130px) skewX(-45deg);
+}
+.butboutique:hover:before,
+.butboutique:hover:after{
+  opacity: 0.6;
+  transform: translateX(320px) skewX(-45deg);
+}
+.butboutique:hover{
+  color: #f2f2f2;
+}
+
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 * {
@@ -109,7 +232,7 @@ button.accueil{
 .carou{
   display: flex;
   justify-content: center;
-  background:  #E4EBF5;
+  background: #000000;
   height: 600px;
 }
 
@@ -168,10 +291,8 @@ button.accueil{
   user-select: none;
 }
 
-li.card{
-  box-shadow:.8rem .8rem 1.4rem #c8d0e7,
-  -.2rem -.2rem 1.8rem #FFFFFF;
-}
+
+
 .carousel :where(.card, .img) {
   display: flex;
   justify-content: center;
@@ -181,7 +302,7 @@ li.card{
   scroll-snap-align: start;
   height: 342px;
   list-style: none;
-  background: #e2e9f3;
+  background: #010a4d;
   cursor: pointer;
   padding-bottom: 15px;
   flex-direction: column;
@@ -201,12 +322,13 @@ li.card{
   border: 4px solid #fff;
 }
 .carousel .card h2 {
+  color: white;
   font-weight: 500;
   font-size: 1.56rem;
   margin: 30px 0 5px;
 }
 .carousel .card span {
-  color: #6A6D78;
+  color: #ffffff;
   font-size: 1.31rem;
 }
 
@@ -234,7 +356,8 @@ a {
 
 
 .footer {
-  background-color: #ccb0b8;
+
+  background-color: #031080;
   color: #fff;
 }
 .footer-wave-svg {
@@ -246,7 +369,7 @@ a {
   width: 100%;
 }
 .footer-wave-path {
-  fill: #e2e9f3;
+  fill: #000000;
 }
 
 .footer-content {
@@ -297,9 +420,10 @@ a {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
 .footer-call-to-action-button:hover {
   background-color: #fffff2;
-  color: #00bef0;
+  color: #3FB0F6;
 }
 .button:last-of-type {
   margin-right: 0;
@@ -367,7 +491,8 @@ a {
 }
 
 .footer-social-amoeba-path {
-  fill: #886b6f;
+  fill: #000000;
+
 }
 
 .footer-social-link.linkedin {
@@ -403,7 +528,7 @@ a {
 }
 
 .footer-social-icon-path {
-  fill: #caafb7;
+  fill: #03109f;
   transition: fill .2s;
 }
 
@@ -433,7 +558,7 @@ a {
 
 
 .footer-copyright {
-  background-color: #876a6e;
+  background-color: #000000;
   color: #fff;
   padding: 15px 30px;
   text-align: center;
@@ -457,6 +582,17 @@ a {
 .footer-copyright-link {
   color: #fff;
   text-decoration: none;
+}
+
+.imgback{
+  display: flex;
+  justify-content: center;
+
+}
+
+.imgback img{
+  width: 100%;
+
 }
 
 

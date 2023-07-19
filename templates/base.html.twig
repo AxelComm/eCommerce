@@ -27,16 +27,17 @@
                     <li class="nav-item"><a class="nav-link active" href="{{ path('app_propos') }}">A porpos</a></li>
                 </ul>
                 {% if not app.user %}
-                <a href="{{ path('app_login') }}"><button type="button" class="btn btn-light">Connexion</button></a>
-                <a href="{{ path('app_register') }}"><button type="button" class="btn btn-light" style="margin-left: 5%">Inscription</button></a>
+                <a href="{{ path('app_login') }}"><button type="button" class="btnnav ">Connexion</button></a>
+                <a href="{{ path('app_register') }}"><button type="button" class="btnnav " style="margin-left: 5%">Inscription</button></a>
                  {% else%}
 
             </div>
             <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
+                <button class="btn btn-outline-dark" type="submit"><a href="{{ path('cart_index') }}">
                     <i class="bi-cart-fill me-1"></i>
                     Panier
                     <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </a>
                 </button>
             </form>
             <div class="deco">
