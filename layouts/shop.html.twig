@@ -1,0 +1,151 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}title{% endblock %}
+
+{% block body %}
+    <div class="columns">
+        <div class="column colnav">
+            <div class="cont">
+                <div class="side">
+                    <ul class="menu">
+                        <li class="item"><a href="#"><i class="fas fa-tachometer-alt"></i><span class="text">Tout</span></a></li>
+                        <li class="item"><a href="#"><i class="fas fa-user"></i><span class="text">Console</span></a></li>
+                        <li class="item active"><a href="#"><i class="fas fa-file-alt"></i><span class="text">Ordinateur</span></a></li>
+                        <li class="item"><a href="#"><i class="fas fa-play "></i><span class="text">Telephone</span></a></li>
+                        <li class="item"><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text">Accessoires</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column is-9">
+            <div class="bodyshop">
+                <div class="container py-3">
+                    <div class="columns is-multiline produits">
+                        {% for produit in produits %}
+                            <div class="column is-4">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <figure class="image is-128x128">
+                                                    <img src="{{ produit.image }}" alt="{{ produit.nom }}">
+                                                </figure>
+                                            </div>
+                                            <div class="media-content">
+                                                <h5>{{ produit.nom }}</h5>
+                                                <div class="stars">
+                                                    {# <span class="icon has-text-danger">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i> #}
+                                                    </span>
+                                                </div>
+                                                <div class="category text-muted is-size-7">
+                                                    Categorie
+                                                </div>
+                                                <p class="text-truncate mb-4" style="max-height: 100px; overflow: hidden;">
+                                                    {{ produit.description }}
+                                                </p>
+                                                <div class="price mt-2">
+                                                    <h4 class="is-size-4">{{ produit.prix }} €</h4>
+                                                </div>
+                                                {% if produit.stock %}
+                                                    <h6 class="has-text-success">Produit en stock</h6>
+                                                {% else %}
+                                                    <h6 class="has-text-danger">Produit en rupture</h6>
+                                                {% endif %}
+                                                <div class="buttons mt-4">
+                                                    <a href="{{ path('app_shop_produit', {'slug': produit.slug}) }}" class="button is-primary is-small">Details</a>
+                                                    <a href="{{ path('cart_add', {'id': produit.id}) }}" class="button is-outline-primary is-small">Ajouter au panier</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <hr>
+
+
+
+    <section>
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <form id="align-form"  class="formcom" method="post">
+                        {{ form_start(formCommentaire) }}
+                        <div class="field">
+                            <label class="label">Laisse un commentaire</label>
+                            <div class="control">
+                                {{ form_row(formCommentaire.description, {'attr': {'class': 'textarea', 'placeholder': 'Laisse un commentaire', 'rows': '5'}}) }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Pseudo</label>
+                            <div class="control">
+                                <input class="input" type="text" name="name" id="fullname" placeholder="Votre pseudo">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p class="help">Si vous n'avez pas de compte <a href="#" class="alert-link">inscrivez-vous</a></p>
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button is-primary bouttonvalid">Ajouter</button>
+                        </div>
+                        {{ form_end(formCommentaire) }}
+                    </form>
+                </div>
+                <div class="column is-8">
+                    <h1 class="title is-1">Commentaires</h1>
+                    {% for commentaire in commentaires %}
+                        <article class="media box">
+                            <figure class="media-left">
+                                <p class="image is-64x64">
+                                    <img src="{{ asset('/uploadImages/' ~ commentaire.user.image) }}" alt="" class="is-rounded">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    {% if commentaire.user is not null and app.user is not null and (app.user.id == commentaire.user.id) %}
+                                        <form class="butdelete" action="{{ path('delete_commentaire', {'id': commentaire.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+                                            <input type="hidden" name="token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+                                            <button class="delete" aria-label="delete"></button>
+                                        </form>
+                                    {% endif %}
+                                    <p>
+                                        <strong>{{ commentaire.user.pseudo }}</strong>
+                                        <small>{{ commentaire.createdAt|date('d/m/Y H:i:s') }}</small>
+                                        <br>
+                                        {{ commentaire.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu .item');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                menuItems.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+{% endblock %}

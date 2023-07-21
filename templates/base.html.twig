@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}TechWave{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -16,59 +16,58 @@
     </head>
     <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container px-4 px-lg-5">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
             <a class="navbar-brand" href="{{ path('app_accueil') }}">TechWave</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ path('app_accueil') }}">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{ path('app_shop') }}">Boutique</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{ path('app_propos') }}">A porpos</a></li>
-                </ul>
-                {% if not app.user %}
-                <a href="{{ path('app_login') }}"><button type="button" class="btnnav ">Connexion</button></a>
-                <a href="{{ path('app_register') }}"><button type="button" class="btnnav " style="margin-left: 5%">Inscription</button></a>
-                 {% else%}
+            <button class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarSupportedContent">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
+            <div class="navbar-menu" id="navbarSupportedContent">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{{ path('app_accueil') }}">Accueil</a>
+                    <a class="navbar-item" href="{{ path('app_shop') }}">Boutique</a>
+                    <a class="navbar-item" href="{{ path('app_propos') }}">À propos</a>
+                </div>
 
+                    {% if not app.user %}
+                <a href="{{ path('app_login') }}"><button class="buttonnav" style="--clr:#3fa9ed"><span>Connexion</span><i></i></button></a>
+                <a href="{{ path('app_register') }}"><button class="buttonnav" style="--clr:#cef7f6"><span>Inscription</span><i></i></button></a>
+
+                {% else %}
+                <div style="display: flex">
+                        <form class="navbar-item" action="{{ path('cart_index') }}">
+                            <button class="button is-light" type="submit">
+                                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill: #0c0c0c
+                                            }</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg></span>
+                                <span>Panier</span>
+                            </button>
+                        </form>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">Profil</a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{ path('visualiser_user') }}">Visualiser</a>
+                                <a class="navbar-item deconex" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-            <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit"><a href="{{ path('cart_index') }}">
-                    <i class="bi-cart-fill me-1"></i>
-                    Panier
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </a>
-                </button>
-            </form>
-            <div class="deco">
-                <nav>
-                    <ul>
-                        <li class="dropdown"><a href="#">Profil</a>
-                            <ul>
-                                <li><a href="{{ path('visualiser_user') }}">Visualiser</a></li>
-                                <li><a class="deconex" href="{{ path('app_logout') }}">Deconnexion</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            {% endif %}
         </div>
     </nav>
 
 
     {% include '_partials/_flash.html.twig'  %} {# j'affiche le message flash pour la creation de compte  #}
-
-
         {% block body %}{% endblock %}
     <div class="pg-footer">
         <footer class="footer">
-                <svg class="footer-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
-                    <path class="footer-wave-path" d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z"></path>
-                </svg>
+            <svg class="footer-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+                <path class="footer-wave-path" d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z"></path>
+            </svg>
 
             <div class="footer-content">
-                <div class="footer-social-links ">
+                <div class="footer-social-links">
                     <svg class="footer-social-amoeba-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 54">
                         <path class="footer-social-amoeba-path" d="M223.06,43.32c-.77-7.2,1.87-28.47-20-32.53C187.78,8,180.41,18,178.32,20.7s-5.63,10.1-4.07,16.7-.13,15.23-4.06,15.91-8.75-2.9-6.89-7S167.41,36,167.15,33a18.93,18.93,0,0,0-2.64-8.53c-3.44-5.5-8-11.19-19.12-11.19a21.64,21.64,0,0,0-18.31,9.18c-2.08,2.7-5.66,9.6-4.07,16.69s.64,14.32-6.11,13.9S108.35,46.5,112,36.54s-1.89-21.24-4-23.94S96.34,0,85.23,0,57.46,8.84,56.49,24.56s6.92,20.79,7,24.59c.07,2.75-6.43,4.16-12.92,2.38s-4-10.75-3.46-12.38c1.85-6.6-2-14-4.08-16.69a21.62,21.62,0,0,0-18.3-9.18C13.62,13.28,9.06,19,5.62,24.47A18.81,18.81,0,0,0,3,33a21.85,21.85,0,0,0,1.58,9.08,16.58,16.58,0,0,1,1.06,5A6.75,6.75,0,0,1,0,54H236C235.47,54,223.83,50.52,223.06,43.32Z"></path>
                     </svg>
@@ -102,7 +101,7 @@
             <div class="footer-copyright">
                 <div class="footer-copyright-wrapper">
                     <p class="footer-copyright-text">
-                        <a class="footer-copyright-link" href="#" target="_self"> ©2023. | Design par Commerly Axel. </a>
+                        <a class="footer-copyright-link" href="#" target="_self">©2023. | Design par Commerly Axel.</a>
                     </p>
                 </div>
             </div>

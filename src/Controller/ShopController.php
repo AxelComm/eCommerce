@@ -84,18 +84,22 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 
-    #[Route('/shop/{produit}',
-        requirements: ["id"=> '\d+'],
-        name: 'app_shop_produit')]
-    public function detail(
-        Produit $produit
-    ): Response
-    {
+      #[Route('/shop/{slug}', name: 'app_shop_produit')]
+      public function detailBySlug(
+          ProduitRepository $produitRepository,
+          string $slug)
+      : Response
+      {
+          $produit = $produitRepository->findOneBy(['slug' => $slug]);
 
-        return $this->render('shop/produit.html.twig',[
-            'produit' => $produit
-        ]);
-    }
+          if (!$produit) {
+              throw $this->createNotFoundException('Produit non trouvé');
+          }
+
+          return $this->render('shop/produit.html.twig', [
+              'produit' => $produit
+          ]);
+      }
 
 
 

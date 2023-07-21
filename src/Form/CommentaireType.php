@@ -16,7 +16,7 @@ class CommentaireType extends AbstractType
     {
         $builder
             ->add('description', TextareaType::class, [
-                'label' => 'Ajouter des commentaires :',
+                'label' => 'Message :',
                 'attr' => [
                     'maxlength' => 300, // Limite de 100 caractères
                 ],

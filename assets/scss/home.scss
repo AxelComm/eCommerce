@@ -17,30 +17,34 @@ body{
   margin-left: 5%;
 }
 
-nav{
+.navbar{
   background: #010a4c;
   border-bottom: 1px solid #1f2286;
   box-shadow: 0 2px 4px #3fb0f6; /* Paramètres de l'ombre de boîte */
 }
 
-nav ul li ul li a.deconex:hover{
+.navbar ul li ul li a.deconex:hover{
   background-color: rgba(248, 4, 4, 0.69);
   color: #fff;
 
 }
 
-nav ul {
+.navbar-item, .navbar-link{
+  color: white;
+}
+
+.navbar ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li {
+.navbar ul li {
   position: relative;
 
 }
 
-nav ul li a {
+.navbar ul li a {
   display: block;
   padding: 10px;
   text-decoration: none;
@@ -48,7 +52,7 @@ nav ul li a {
   background: #010a4b;;
 }
 
-nav ul li ul {
+.navbar ul li ul {
   display: none;
   position: absolute;
   top: 100%;
@@ -57,21 +61,21 @@ nav ul li ul {
   padding: 0;
 }
 
-nav ul li:hover ul {
+.navbar ul li:hover ul {
   display: block;
   border: 1px solid #bea1ab ;
 }
 
-nav ul li ul li {
+.navbar ul li ul li {
   width: 100%;
 }
 
-nav ul li ul li a {
+.navbar ul li ul li a {
   padding: 10px;
   color: #ffffff;
 }
 
-nav ul li ul li a:hover {
+.navbar ul li ul li a:hover {
   background: #ceb1b9;;
 }
 
@@ -90,18 +94,107 @@ a.navbar-brand{
   -webkit-text-fill-color: transparent;
 }
 
-.btnnav{
-  margin: 10px;
-  padding: 5px;
-  text-align: center;
+
+
+
+.buttonnav{
+  position: relative;
+  background: #3d3c3c;
+  color: #fff;
+  text-decoration: none;
   text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-  box-shadow: 0 0 5px #f1fdf9;
+  border: none;
+  margin: 10px;
+  letter-spacing: 0.1rem;
+  font-size: 10px;
+  padding: 10px 25px;
+  transition: 0.2s;
   border-radius: 8px;
-  background-image: linear-gradient(to right, #40619c 0%, #3FB0F6 100%);
+}
+
+
+
+.buttonnav:hover {
+  background:#3d3c3c ;
+  color: white;
+  animation: box 3s infinite;
+}
+
+.buttonnav::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #010a4b;
+}
+
+.buttonnav span {
+  position: relative;
+  z-index: 1;
+}
+.buttonnav i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.buttonnav i::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 0.2px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+.buttonnav:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+.buttonnav i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 0.2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+.buttonnav:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
 }
 
 /* Ceci est un commentaire CSS sur une seule ligne */
@@ -307,6 +400,7 @@ button.accueil{
   padding-bottom: 15px;
   flex-direction: column;
   border-radius: 8px;
+  border: 2px solid #3FB0F6;
 }
 .carousel .card .img {
 
@@ -356,8 +450,8 @@ a {
 
 
 .footer {
-
-  background-color: #031080;
+  padding: 0;
+  background-color: #010a4b;
   color: #fff;
 }
 .footer-wave-svg {
@@ -528,7 +622,7 @@ a {
 }
 
 .footer-social-icon-path {
-  fill: #03109f;
+  fill: #ffffff;
   transition: fill .2s;
 }
 

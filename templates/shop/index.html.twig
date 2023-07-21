@@ -1,120 +1,151 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Shop{% endblock %}
+{% block title %}Boutique{% endblock %}
 
 {% block body %}
-    <h1>Boutique</h1>
-    <div class="bodyshop">
-        <div class="container py-3">
-            <div class="row">
-                {% for produit in produits %}
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card shadow-0 border rounded-3 mb-4">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                            <img src="{{ produit.image }}" alt="" class="w-100" />
-                                            <a href="#!">
-                                                <div class="hover-overlay">
-                                                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h5>{{ produit.nom }}</h5>
-                                        <div class="d-flex flex-row">
-                                            <div class="text-danger mb-1 me-2">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <div class="mt-1 mb-2 text-muted small">
-                                            <span>Categorie</span>
-                                            <span class="text-primary"> • </span>
-                                        </div>
-                                        <p class="text-truncate mb-4">
-                                            {{ produit.description }}
-                                        </p>
-                                        <div class="d-flex flex-row align-items-center">
-                                            <h4 class="mb-0 me-2">{{ produit.prix }} €</h4>
-                                        </div>
-                                        {% if produit.stock == true %}
-                                            <h6 class="text-success">Produit en stock</h6>
-                                        {% else %}
-                                            <h6 class="text-success">Produit en rupture</h6>
-                                        {% endif %}
-
-                                        <div class="d-flex flex-column mt-4">
-                                            <a href="{{ path('app_shop_produit', {'produit': produit.id}) }}">
-                                                <button class="btn btn-primary btn-sm" type="button">Details</button>
-                                            </a>
-                                            <button class="btn btn-outline-primary btn-sm mt-2" type="button">
-                                                <a href="{{ path('cart_add', {'id' : produit.id}) }}">Ajouter au panier</a>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+    <div class="columns">
+        <div class="column colnav">
+            <div class="cont">
+                <div class="side">
+                    <ul class="menu">
+                        <a href="{{ path('app_shop') }}">Tout</a>
+                        <a href="{{ path('app_categorie', {'nom': 'console'}) }}">Console</a>
+                        <a href="{{ path('app_categorie', {'nom': 'telephone'}) }}">Telephone</a>
+                        <a href="{{ path('app_categorie', {'nom': 'ordinateur'}) }}">Ordinateur</a>
+                        <a href="{{ path('app_categorie', {'nom': 'accessoire'}) }}">Accessoires</a>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-
-
-
-
-    {{ form_start(formCommentaire) }}
-    <section class="content-item" id="comments">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <form>
-                        <fieldset>
-                            <div class="row">
-                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                    {{ form_row(formCommentaire.description, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-secondary bouttonvalid" style="margin-top: 1%">Ajouter </button>
-                        </fieldset>
-                    </form>
-                    {{ form_end(formCommentaire) }}
-
-                    <h3>Commentaires : </h3>
-                        {% for commentaire in commentaires %}
-                            <div class="col-md-8">
-                                <div class="media g-mb-30 media-comment">
-                                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="{{ asset('/uploadImages/' ~ commentaire.user.image) }}" alt="User Image">
-                                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 cardcomm";>
-                                        <div class="g-mb-15">
-                                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ commentaire.user.pseudo }}</h5>
-                                            <span class="g-color-gray-dark-v4 g-font-size-12">{{ commentaire.createdAt|date('d/m/Y H:i:s') }}</span>
-                                        </div>
-                                        <p style="word-wrap: break-word;">{{ commentaire.description }}</p>
-                                        <ul class="list-inline d-sm-flex my-0">
-                                            <li class="list-inline-item ml-auto">
-                                                {% if commentaire.user is not null and app.user is not null and (app.user.id == commentaire.user.id) %}
-                                                    <form action="{{ path('delete_commentaire', {'id': commentaire.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
-                                                        <input type="hidden" name="token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
-                                                        <button class="delete" aria-label="delete">Supprimer</button>
-                                                    </form>
+        <div class="column is-11">
+            <div class="bodyshop">
+                <div class="container py-3">
+                    <div class="columns is-multiline produits">
+                        {% for produit in produits %}
+                            <div class="column is-4">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <figure class="image is-128x128">
+                                                    <img src="{{ produit.image }}" alt="{{ produit.nom }}">
+                                                </figure>
+                                            </div>
+                                            <div class="media-content">
+                                                <h5>{{ produit.nom }}</h5>
+                                                <div class="stars">
+                                                    {# <span class="icon has-text-danger">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i> #}
+                                                    </span>
+                                                </div>
+                                                <div class="category text-muted is-size-7">
+                                                    Categorie
+                                                </div>
+                                                <p class="text-truncate mb-4" style="max-height: 100px; overflow: hidden;">
+                                                    {{ produit.description }}
+                                                </p>
+                                                <div class="price mt-2">
+                                                    <h4 class="is-size-4">{{ produit.prix }} €</h4>
+                                                </div>
+                                                {% if produit.stock %}
+                                                    <h6 class="has-text-success">Produit en stock</h6>
+                                                {% else %}
+                                                    <h6 class="has-text-danger">Produit en rupture</h6>
                                                 {% endif %}
-                                            </li>
-                                        </ul>
+                                                <div class="buttons mt-4">
+                                                    <a href="{{ path('app_shop_produit', {'slug': produit.slug}) }}" class="button is-primary is-small">Details</a>
+                                                    <a href="{{ path('cart_add', {'id': produit.id}) }}" class="button is-outline-primary is-small">Ajouter au panier</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
 
+
+
+    <hr>
+
+
+
+    <section>
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <form id="align-form"  class="formcom" method="post">
+                        {{ form_start(formCommentaire) }}
+                        <div class="field">
+                            <label class="label">Laisse un commentaire</label>
+                            <div class="control">
+                                {{ form_row(formCommentaire.description, {'attr': {'class': 'textarea', 'placeholder': 'Laisse un commentaire', 'rows': '5'}}) }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Pseudo</label>
+                            <div class="control">
+                                <input class="input" type="text" name="name" id="fullname" placeholder="Votre pseudo">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p class="help">Si vous n'avez pas de compte <a href="#" class="alert-link">inscrivez-vous</a></p>
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button is-primary bouttonvalid">Ajouter</button>
+                        </div>
+                        {{ form_end(formCommentaire) }}
+                    </form>
+                </div>
+                <div class="column is-8">
+                    <h1 class="title is-1">Commentaires</h1>
+                    {% for commentaire in commentaires %}
+                        <article class="media box">
+                            <figure class="media-left">
+                                <p class="image is-64x64">
+                                    <img src="{{ asset('/uploadImages/' ~ commentaire.user.image) }}" alt="" class="is-rounded">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    {% if commentaire.user is not null and app.user is not null and (app.user.id == commentaire.user.id) %}
+                                        <form class="butdelete" action="{{ path('delete_commentaire', {'id': commentaire.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+                                            <input type="hidden" name="token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+                                            <button class="delete" aria-label="delete"></button>
+                                        </form>
+                                    {% endif %}
+                                    <p>
+                                        <strong>{{ commentaire.user.pseudo }}</strong>
+                                        <small>{{ commentaire.createdAt|date('d/m/Y H:i:s') }}</small>
+                                        <br>
+                                        {{ commentaire.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </section>
 
+    <script>
+        const menuItems = document.querySelectorAll('.menu .item');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                menuItems.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 {% endblock %}
