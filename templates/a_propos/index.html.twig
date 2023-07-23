@@ -1,11 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}A porpos{% endblock %}
+{% block title %}A Propos{% endblock %}
+
+
 
 {% block body %}
 
+    <div class="container">
+        <h1>À Propos de Nous</h1>
+
+        <p class="intro has-text-white">Bienvenue sur notre site de vente de produits multimédia !</p>
+
+        <h3>Notre Mission</h3>
+        <p class="has-text-white">Nous sommes passionnés par la technologie et les produits multimédia. Notre mission est de vous offrir une large sélection de produits de qualité, allant des consoles de jeu dernier cri aux ordinateurs performants, en passant par les accessoires et gadgets les plus innovants.</p>
+
+        <h3>Notre Équipe</h3>
+        <p class="has-text-white">Nous sommes une équipe de passionnés, experts dans le domaine de la technologie et du multimédia. Notre expertise nous permet de vous proposer les meilleurs produits du marché, en tenant compte des dernières tendances et innovations.</p>
+
+        <h3>Notre Engagement</h3>
+        <p class="has-text-white">La satisfaction de nos clients est notre priorité absolue. Nous nous efforçons de vous offrir une expérience d'achat agréable, en mettant à votre disposition un site convivial et intuitif. Notre service client est toujours disponible pour répondre à vos questions et vous assister tout au long de votre parcours d'achat.</p>
+
+        <h3>Nos Produits</h3>
+        <p class="has-text-white">Nous sélectionnons soigneusement chaque produit que nous proposons sur notre site. Vous trouverez chez nous des produits de marques reconnues pour leur fiabilité et leurs performances. Que vous soyez un gamer passionné, un amateur de streaming, ou un professionnel en quête d'efficacité, nous avons les produits qui correspondent à vos besoins.</p>
+
+        <h3>Contactez-Nous</h3>
+        <p class="has-text-white">Pour toute question, suggestion ou demande d'assistance, n'hésitez pas à nous contacter en utilisant notre page <a href={{ path('app_nous_contacter') }}>Nous Contacter</a>. Notre équipe se fera un plaisir de vous aider.</p>
+    </div>
 
 
 
-    <h3><a href={{ path('app_nous_contacter') }}>Nous contacter</a></h3>
+
 {% endblock %}

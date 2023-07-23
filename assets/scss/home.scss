@@ -440,9 +440,15 @@ button.accueil{
 
 
 a {
-  color: #070707;
+  color: #ababab;
   text-decoration: none;
 }
+
+a:hover{
+
+  text-decoration: none;
+}
+
 .pg-footer {
   font-family: 'Roboto', sans-serif;
 }
@@ -608,7 +614,6 @@ a {
   clip: rect(1px,1px,1px,1px);
   -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
   clip-path: inset(0px 0px 99.9% 99.9%);
-  overflow: hidden;
   height: 1px;
   width: 1px;
   padding: 0;

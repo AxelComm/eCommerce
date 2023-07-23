@@ -1,0 +1,32 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;
+}
+
+.intro {
+  text-align: center;
+  font-size: 18px;
+  color: #bfbfbf;
+}
+
+h3 {
+  margin-top: 30px;
+  color: #007bff;
+}
+
+
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
