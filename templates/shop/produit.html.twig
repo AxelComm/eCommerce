@@ -3,20 +3,27 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title text-center">{{ produit.nom }}</h1>
+                <h1 class="card-title text-center">{{ produit.nom| upper }}</h1>
                 <div class="row">
                     <div class="product-image">
-                        <img src="{{ asset(produit.image) }}" alt="Product Image" >
+                        <img src="{{ asset(produit.image) }}" alt="Product Image">
                     </div>
                     <div class="product-details">
                         <h3 class="box-title mb-5">Description du produit</h3>
                         <p>{{ produit.description|nl2br }}</p>
+
                         <h2 class="mt-5">
                             {{ produit.prix }} €
                         </h2>
-                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">
-                            <a href="{{ path('cart_add', {'id' : produit.id}) }}">Ajouter au panier</a>
-                        </button>
+                        {% if produit.stock == true %}
+                            <p class="text-success">Produit en stock</p>
+                            <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                                <a href="{{ path('cart_add', {'id' : produit.id}) }}">Ajouter au panier</a>
+                            </button>
+                            {% else %}
+                            <p class="text-danger">Produit en rupture de stcok</p>
+                        {% endif %}
+
                     </div>
                     <div class="product-info">
                         <h3 class="box-title mt-5">Information supplementaire</h3>

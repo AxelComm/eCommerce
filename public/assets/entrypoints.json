@@ -2,12 +2,12 @@
   "entrypoints": {
     "app": {
       "js": [
-        "http://localhost:8080/assets/runtime.js",
-        "http://localhost:8080/assets/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_mini-css-extract-plugin_-a95a48.js",
-        "http://localhost:8080/assets/app.js"
+        "/assets/runtime.js",
+        "/assets/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js.js",
+        "/assets/app.js"
       ],
       "css": [
-        "http://localhost:8080/assets/app.css"
+        "/assets/app.css"
       ]
     }
   }

@@ -50,14 +50,17 @@
                                                 <div class="price mt-2">
                                                     <h4 class="is-size-4">{{ produit.prix }} €</h4>
                                                 </div>
-                                                {% if produit.stock %}
+                                                {% if produit.stock == true %}
                                                     <h6 class="has-text-success">Produit en stock</h6>
                                                 {% else %}
                                                     <h6 class="has-text-danger">Produit en rupture</h6>
+                                                    <h6 class="has-text-danger">Bientot de retour !</h6>
                                                 {% endif %}
                                                 <div class="buttons mt-4">
                                                     <a href="{{ path('app_shop_produit', {'slug': produit.slug}) }}" class="button is-primary is-small">Details</a>
-                                                    <a href="{{ path('cart_add', {'id': produit.id}) }}" class="button btn btn-outline-primary is-small">Ajouter au panier</a>
+                                                    {% if produit.stock == true %}
+                                                        <a href="{{ path('cart_add', {'id': produit.id}) }}" class="button btn btn-outline-primary is-small">Ajouter au panier</a>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
