@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+<h1>Votre Panier</h1>
+
+    {% if items | length > 0  %}
+        <section class="hero  is-fullheight">
+            <div class="hero-body">
+                <div class="container py-5">
+                    <div class="columns is-centered is-vcentered">
+                        <div class="column">
+                            <div class="card" style="border-radius: 15px;">
+                                <div class="card-content has-text-black">
+
+                                    <div class="columns">
+                                        <div class="column is-half">
+                                            <h3 class="title is-4 mb-5 has-text-centered has-text-weight-bold">Vos produits</h3>
+                                            {% for item in items %}
+                                                <div class="columns is-vcentered mb-5">
+                                                    <div class="column is-3">
+                                                        <figure class="image is-100x100">
+                                                            <img src="{{ asset(item.produit.image) }}" alt="Generic placeholder image">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="columns is-vcentered">
+                                                            <div class="column is-two-thirds">
+                                                                <h5 class="has-text-primary">{{ item.produit.nom }}</h5>
+                                                            </div>
+                                                            <div class="column">
+                                                                <a href="{{ path('cart_remove', {'id': item.produit.id}) }}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 0 448 512">
+                                                                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                                        <style>svg{fill:#ff0000}</style>
+                                                                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <h6 class="has-text-grey">Quantité : {{ item.quantity }}</h6>
+                                                        <div class="columns is-vcentered">
+                                                            <div class="column">
+                                                                <p class="has-text-weight-bold mb-0">{{ item.produit.prix }}€</p>
+                                                            </div>
+                                                        </div>
+                                                        <p>Total prix de ce produit : {{ item.produit.prix * item.quantity }}</p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                            <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+
+                                            <div class="columns is-mobile is-vcentered is-justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
+                                                <h5 class="has-text-weight-bold mb-0">Total de la commande:</h5>
+                                                <h5 class="has-text-weight-bold mb-0">{{ total }}</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="column is-half">
+                                            <h3 class="title is-4 mb-5 has-text-centered has-text-weight-bold">Paiement</h3>
+
+                                            <form class="mb-5">
+                                                <div class="field mb-5">
+                                                    <label class="label">Numero de Carte</label>
+                                                    <div class="control">
+                                                        <input type="text" class="input" value="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="field mb-5">
+                                                    <label class="label">Nom de la carte</label>
+                                                    <div class="control">
+                                                        <input type="text" class="input" value="John Smith" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="columns is-mobile">
+                                                    <div class="column is-half">
+                                                        <div class="field">
+                                                            <label class="label">Expiration</label>
+                                                            <div class="control">
+                                                                <input type="text" class="input" value="01/22" minlength="7" maxlength="7" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column is-half">
+                                                        <div class="field">
+                                                            <label class="label">Cvv</label>
+                                                            <div class="control">
+                                                                <input type="password" class="input" value="&#9679;&#9679;&#9679;" minlength="3" maxlength="3" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <button type="button" class="button is-primary is-fullwidth">Payer maintenant</button>
+
+                                                <h5 class=" mt-1 title is-5 has-text-weight-bold mb-5" style="position: absolute; bottom: 0;">
+                                                    <a href="#!"><i class="fas fa-angle-left me-2"></i>Retour a la boutique</a>
+                                                </h5>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <section>
+            <div class="hero-body mt-5 mb-1">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div class="column is-half">
+                            <div class="carte" style="border-radius: 15px; background-color: white;">
+                                <div class="card-content has-text-black">
+                                    <h3 class="title is-4 mb-5 has-text-centered has-text-weight-bold">Votre panier est vide</h3>
+                                    <figure class="image is-128x128 mb-5 mx-auto">
+                                        <img src="{{ asset('img/sad.avif') }}" alt="Empty Cart">
+                                    </figure>
+                                    <p class="has-text-centered">Votre panier est actuellement vide.</p>
+                                    <p class="has-text-centered">Ajoutez des produits à votre panier en explorant notre boutique.</p>
+                                    <div class="has-text-centered mt-4">
+                                        <a href="{{ path('app_shop') }}" class="button is-primary">Explorer la boutique</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
