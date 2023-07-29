@@ -50,6 +50,7 @@ class UserController extends AbstractController
             $en->flush();
             $this->addFlash('message', 'modification effectuée avec succés');
 
+
             return $this->redirectToRoute('visualiser_user');
         }
 

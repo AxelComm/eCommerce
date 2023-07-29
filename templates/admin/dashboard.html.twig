@@ -1,5 +1,10 @@
-{% extends "@EasyAdmin/page/content.html.twig" %}
+{% extends "@!EasyAdmin/page/content.html.twig" %}
 
 {% block content %}
-<h1>Bienvenue au sein de l'administration de TechWave</h1>
+    <head>
+        <link rel="shortcut icon" href="{{ asset('img/headset-solid.svg') }}">
+    </head>
+<h1 style="text-align: center">Bienvenue au sein de l'administration de TechWave<br> Retour sur le <a href="{{ path('app_accueil') }}">site</a></h1>
+
+
 {% endblock %}

@@ -6,7 +6,7 @@
                 <h1 class="card-title text-center">{{ produit.nom| upper }}</h1>
                 <div class="row">
                     <div class="product-image">
-                        <img src="{{ asset(produit.image) }}" alt="Product Image">
+                        <img src="{{ asset('img/' ~ produit.image) }}" alt="Product Image">
                     </div>
                     <div class="product-details">
                         <h3 class="box-title mb-5">Description du produit</h3>

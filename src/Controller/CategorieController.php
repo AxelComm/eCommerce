@@ -20,14 +20,14 @@ class CategorieController extends AbstractController
     #[Route('/{nom}', name: 'app_categorie')]
     public function index(
         Categorie $categorie,
-        Request $request,
+        Request $request,//objet qui represente la requete http qui contient toutes les informations envoyées
         EntityManagerInterface $entityManager,
         CommentaireRepository $commentaireRepository
     ): Response
     {
         $commentaire = new Commentaire();// on cree une nouvelles instance de Commentaire
         $formCommentaire = $this->createForm('App\Form\CommentaireType', $commentaire); // on cree le form a partir de CommentaireType
-        $formCommentaire->handleRequest($request);
+        $formCommentaire->handleRequest($request);//methode qui traite le formulaire
 
         if ($formCommentaire->isSubmitted() && $formCommentaire->isValid()){
             $commentaire->setUser($this->getUser()); // Définir l'utilisateur connecté comme l'auteur du commentaire
@@ -42,7 +42,7 @@ class CategorieController extends AbstractController
         return $this->render('categorie/index.html.twig',[
             'categorie' => $categorie,
             'commentaires'=> $commentaires,
-            'formCommentaire'=> $formCommentaire->createView()
+            'formCommentaire'=> $formCommentaire
         ]);
     }
 
@@ -52,7 +52,7 @@ class CategorieController extends AbstractController
         Request $request,
         CommentaireRepository $commentaireRepository,
         EntityManagerInterface $entityManager,
-        $id,
+        Commentaire $id,
         Security $security
 
     ): Response
@@ -64,12 +64,14 @@ class CategorieController extends AbstractController
             throw $this->createNotFoundException('Commentaires not found.');
         }
 
-        $user = $this->getUser();
+        $user = $this->getUser();//recupere le user connecté
 
-        if (!$security->isGranted('ROLE_ADMIN') && $commentaire->getUser() !== $user){
-            throw new AccessDeniedException("Vous n'etes pas autoriser a supprimer ce commentaire");
+        //on utilise security pour l'autorisation a supprimer e commentaire ou non
+        if (!$security->isGranted('ROLE_ADMIN') || $commentaire->getUser() !== $user){
+            $this->addFlash('warning',"Vous n'etes pas autoriser a supprimer ce commentaire");
+            return $this->redirectToRoute('app_shop');
         }
-
+        // jeton de securite qui verifie que l'action ce fait bien apr le formulaire
         if ($this->isCsrfTokenValid('delete' . $commentaire->getId(), $request->request->get('token'))) {
             $entityManager->remove($commentaire);
             $entityManager->flush();

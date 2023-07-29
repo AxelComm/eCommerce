@@ -72,4 +72,11 @@ class Categorie
 
         return $this;
     }
+    public function __toString(): string
+    {
+        // Ici, vous retournez une chaîne qui représente l'objet Categorie.
+        // Par exemple, si vous avez une propriété 'nom' dans l'entité Categorie,
+        // vous pouvez retourner le nom de la catégorie ici.
+        return $this->nom;
+    }
 }

@@ -5,7 +5,6 @@
         <title>{% block title %}TechWave{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -26,9 +25,10 @@
             </button>
             <div class="navbar-menu" id="navbarSupportedContent">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="{{ path('app_accueil') }}">Accueil</a>
-                    <a class="navbar-item" href="{{ path('app_shop') }}">Boutique</a>
-                    <a class="navbar-item" href="{{ path('app_propos') }}">À propos</a>
+                    <a class="navbar-item mt-1" href="{{ path('app_accueil') }}">Accueil</a>
+                    <a class="navbar-item mt-1" href="{{ path('app_shop') }}">Boutique</a>
+                    <a class="navbar-item mt-1" href="{{ path('app_propos') }}">À propos</a>
+                    <a class="navbar-item mt-1" href="{{ path('admin') }}">Admin</a>
                 </div>
 
                     {% if not app.user %}
@@ -45,7 +45,7 @@
                             </button>
                         </form>
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">Profil</a>
+                            <a class="navbar-item">Profil</a>
                             <div class="navbar-dropdown">
                                 <a class="navbar-item" href="{{ path('visualiser_user') }}">Visualiser</a>
                                 <a class="navbar-item deconex" href="{{ path('app_logout') }}">Déconnexion</a>
