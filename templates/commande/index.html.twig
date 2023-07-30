@@ -1,20 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommandeController!{% endblock %}
+{% block title %}Commande{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container" style="background-color: #fdfdfd">
+        <div class="columns">
+            <div class="column">
+                <!-- Informations de la commande -->
+                <div class="card">
+                    <h1 class="card-header-title">Informations de la livraison</h1>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">{{ user.nom | capitalize }} {{ user.prenom | capitalize }}</p>
+                                <p class="subtitle is-6">{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>
+                        <h6>Votre adresse :</h6>
+                        <span class="has-text-black-bis">{{ user.NumeroAdresse }}</span>
+                        <span class="has-text-black-bis">{{ user.RueAdresse | capitalize }}</span>
+                        <span class="has-text-black-bis">{{ user.CpAdresse }}</span>
+                        <span class="has-text-black-bis">{{ user.VilleAdresse | capitalize }}</span>
+                        <span class="has-text-black-bis">{{ user.PaysAdresse }}</span>
+                        </p>
+                        <hr>
+                    </div>
+                    <div style="text-align: center">
+                    <a href="{{ path('modifier_user') }}">
+                        <button class="button is-primary mt-2">Modifier l'adresse</button>
+                    </a>
+                    </div>
+                </div>
+            </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/33786/Documents/eCommerce/src/Controller/CommandeController.php'|file_link(0) }}">src/Controller/CommandeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/33786/Documents/eCommerce/templates/commande/index.html.twig'|file_link(0) }}">templates/commande/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <div class="column">
+                <!-- Recapitulatif de la commande -->
+                <div class="card">
+                    <h1 class="card-header-title">Recapitulatif de la commande</h1>
+                    <div class="card-content">
+                        {% if items | length > 0  %}
+                            {% for item in items %}
+                                <div style="width: 100%;display: flex; justify-content: center">
+                                    <div class="mb-4" style="width: 250px; text-align: center;" >
+                                        <img style="width: 100px;" src="{{ asset('img/' ~ item.produit.image) }}" alt="Product Image">
+                                        <h5 class="has-text-primary">{{ item.produit.nom }}</h5>
+                                        <h6 class="has-text-grey">Quantité : {{ item.quantity }}</h6>
+                                        <p class="has-text-weight-bold mb-0">{{ item.produit.prix }} €</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div style="display: flex; justify-content: flex-end">
+                                <h5 class="has-text">Total de la commande :</h5>
+                                <h5 class="has-text">{{ total }} €</h5>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <a href="#">
+                    <button class="button is-primary mt-2">Valider ma commande</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

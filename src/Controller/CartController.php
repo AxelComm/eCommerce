@@ -38,7 +38,11 @@ class CartController extends AbstractController
             'items' => $panierWithData,
             'total' =>$total
         ]);
+
     }
+
+
+
 
     #[Route("/panier/add/{id}", name: 'cart_add')]
     public function add(

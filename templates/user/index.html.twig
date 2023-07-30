@@ -7,60 +7,59 @@
 {% block body %}
     <section class="profil">
         <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-4">
+            <div class="columns">
+                <div class="column is-4">
                     <div class="card mb-4">
-                        <div class="card-body text-center">
+                        <div class="card-content has-text-centered">
                             <img src="{{ asset('/uploadImages/' ~ infoUser.image) }}" alt="avatar"
                                  class="rounded-circle img-fluid" style="width: 150px;">
                             <h5 class="my-3"><strong>Pseudo:</strong> {{ infoUser.pseudo|capitalize }}</h5>
                             <p class="text-muted mb-4">{{ infoUser.villeAdresse|capitalize }}, {{ infoUser.paysAdresse|capitalize }}</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-outline-primary ms-1"><a href="{{ path('modifier_user') }}" >Modifier</a></button>
+                            <div class="buttons is-centered mb-2">
+                                <a href="{{ path('modifier_user') }}" class="button is-outline is-primary">Modifier</a>
                                 <form action="{{ path('delete_user', {'id': app.user.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
                                     <input type="hidden" name="token" value="{{ csrf_token('delete' ~ app.user.id) }}">
-                                    <button class="btn btn-outline-primary ms-1">Supprimer</button>
+                                    <button class="button is-outline is-primary">Supprimer</button>
                                 </form>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="column is-8">
                     <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
+                        <div class="card-content">
+                            <div class="columns is-vcentered">
+                                <div class="column is-3">
                                     <p class="mb-0">Nom Prenom</p>
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="column is-9">
                                     <p class="text-muted mb-0">{{ infoUser.nom|capitalize }} {{ infoUser.prenom|capitalize }}</p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
+                            <div class="columns is-vcentered">
+                                <div class="column is-3">
                                     <p class="mb-0">Email</p>
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="column is-9">
                                     <p class="text-muted mb-0">{{ infoUser.email }}</p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Date de naissance </p>
+                            <div class="columns is-vcentered">
+                                <div class="column is-3">
+                                    <p class="mb-0">Date de naissance</p>
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="column is-9">
                                     <p class="text-muted mb-0">{{ infoUser.naissance | date('d/m/Y') }}</p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Addresse de livraison</p>
+                            <div class="columns is-vcentered">
+                                <div class="column is-3">
+                                    <p class="mb-0">Adresse de livraison</p>
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="column is-9">
                                     <p class="text-muted mb-0">{{ infoUser.numeroAdresse }} {{ infoUser.rueAdresse }}, {{ infoUser.cpAdresse }}, {{ infoUser.villeAdresse|capitalize }}, {{ infoUser.paysAdresse|capitalize }}</p>
                                 </div>
                             </div>
@@ -69,5 +68,6 @@
                 </div>
             </div>
         </div>
+
     </section>
 {% endblock %}
