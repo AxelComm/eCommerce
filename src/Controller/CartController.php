@@ -42,15 +42,12 @@ class CartController extends AbstractController
     }
 
 
-
-
     #[Route("/panier/add/{id}", name: 'cart_add')]
     public function add(
         $id,
         SessionInterface $session
     ): Response
     {
-
 
         $panier = $session->get('panier', []);
 

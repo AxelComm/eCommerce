@@ -29,39 +29,43 @@
                         <hr>
                     </div>
                     <div style="text-align: center">
-                    <a href="{{ path('modifier_user') }}">
-                        <button class="button is-primary mt-2">Modifier l'adresse</button>
-                    </a>
+                        <a href="{{ path('modifier_user') }}">
+                            <button class="button is-primary mt-2">Modifier l'adresse</button>
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="column">
-                <!-- Recapitulatif de la commande -->
-                <div class="card">
-                    <h1 class="card-header-title">Recapitulatif de la commande</h1>
-                    <div class="card-content">
-                        {% if items | length > 0  %}
-                            {% for item in items %}
-                                <div style="width: 100%;display: flex; justify-content: center">
-                                    <div class="mb-4" style="width: 250px; text-align: center;" >
-                                        <img style="width: 100px;" src="{{ asset('img/' ~ item.produit.image) }}" alt="Product Image">
-                                        <h5 class="has-text-primary">{{ item.produit.nom }}</h5>
-                                        <h6 class="has-text-grey">Quantité : {{ item.quantity }}</h6>
-                                        <p class="has-text-weight-bold mb-0">{{ item.produit.prix }} €</p>
-                                    </div>
+        <!-- Recapitulatif de la commande -->
+        <div class="column">
+            <div class="card">
+                <h1 class="card-header-title">Récapitulatif de la commande</h1>
+                <div class="card-content">
+                    {% if items | length > 0  %}
+                        {% for item in items %}
+
+                            <div style="width: 100%;display: flex; justify-content: center">
+                                <div class="mb-4" style="width: 250px; text-align: center;" >
+                                    <img style="width: 100px;" src="{{ asset('img/' ~ item.produit.image) }}" alt="Product Image">
+                                    <h5 class="has-text-primary">{{ item.produit.nom }}</h5>
+                                    <h6 class="has-text-grey">Quantité : {{ item.quantity }}</h6>
+                                    <p class="has-text-weight-bold mb-0">{{ item.produit.prix }} €</p>
                                 </div>
-                            {% endfor %}
-                            <div style="display: flex; justify-content: flex-end">
-                                <h5 class="has-text">Total de la commande :</h5>
-                                <h5 class="has-text">{{ total }} €</h5>
                             </div>
-                        {% endif %}
-                    </div>
+                        {% endfor %}
+
+                        <div style="display: flex; justify-content: flex-end">
+                            <h5 class="has-text">Total de la commande :</h5>
+                            <h5 class="has-text">{{ total }} €</h5>
+                        </div>
+                    {% endif %}
                 </div>
-                <a href="#">
-                    <button class="button is-primary mt-2">Valider ma commande</button>
-                </a>
+            </div>
+            <div style="text-align: center">
+            <a href="{{ path('app_stripeCheckout') }}">
+                <button class="button is-primary mt-2">Valider ma commande</button>
+            </a>
             </div>
         </div>
     </div>
