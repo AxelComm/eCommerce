@@ -16,8 +16,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="column is-11">
+            <br>
+            <h1 style="color: white">{{ categorie.nom | upper}}</h1>
             <div class="bodyshop">
                 <div class="container py-3">
                     <div class="columns is-multiline produits">
@@ -69,7 +69,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 
@@ -144,16 +143,6 @@
         </div>
     </section>
 
-    <script>
-        const menuItems = document.querySelectorAll('.menu .item');
 
-        menuItems.forEach(item => {
-            item.addEventListener('click', function (e) {
-                e.preventDefault();
-                menuItems.forEach(item => item.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
 {% endblock %}
 

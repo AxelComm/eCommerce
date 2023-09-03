@@ -1,11 +1,13 @@
 .card-body h1{
+  font-size: 30px;
   margin-bottom: 5%;
 }
 
 .product-image {
   width: 45%;
   margin-top: 50px;
-
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product-image img {
@@ -13,12 +15,17 @@
   border-radius: 10px;
 }
 
-.product-details {
-  width: 50%;
-}
-
 .product-details h4 {
   margin-top: 5px;
+}
+
+.product-details h3 {
+  margin-top: 50px;
+  font-size: 35px;
+}
+
+.product-details p {
+ font-size: 18px;
 }
 
 .product-details h2 {
