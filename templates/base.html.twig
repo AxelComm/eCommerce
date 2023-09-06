@@ -28,7 +28,10 @@
                     <a class="navbar-item mt-1" href="{{ path('app_accueil') }}">Accueil</a>
                     <a class="navbar-item mt-1" href="{{ path('app_shop') }}">Boutique</a>
                     <a class="navbar-item mt-1" href="{{ path('app_propos') }}">À propos</a>
-                    <a class="navbar-item mt-1" href="{{ path('admin') }}">Admin</a>
+                    {% if is_granted("ROLE_ADMIN")%}
+                        <a class="navbar-item mt-1" href="{{ path('admin') }}">Admin</a>
+                    {% endif %}
+
                 </div>
 
                     {% if not app.user %}

@@ -48,7 +48,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Utilisateur', 'fas fa-user');
         yield MenuItem::subMenu('Action', 'fas fa-bars')
-            ->setSubItems([                                                                                //mettre en action  l'action specifier en paramatre , PAGE_NEW = nouveau entity::class
+            ->setSubItems([                 //mettre en action  l'action specifier en paramatre , PAGE_NEW = nouveau entity::class
                 MenuItem::linkToCrud('Crée un utilisateur', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Voir les utilisateurs', 'fas fa-eye', User::class),
             ]);

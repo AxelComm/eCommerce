@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -16,13 +17,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserController extends AbstractController
 {
     #[Route('/user/visualiser', name: 'visualiser_user')]
-    public function Visualiser(
-        UserInterface  $user,
+    public function visualiser(
+        Security $security,
         UserRepository $userRepository
     ): Response
     {
-        $id = $user->getId();
-        $infoUser = $userRepository->find($id);
+
+        $infoUser = $userRepository->find($security->getUser()->getId());
 
 
         return $this->render('user/index.html.twig', [
@@ -50,7 +51,6 @@ class UserController extends AbstractController
             $en->flush();
             $this->addFlash('message', 'modification effectuée avec succés');
 
-
             return $this->redirectToRoute('visualiser_user');
         }
 
@@ -60,7 +60,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/delete{id}', name: 'delete_user')]
+    #[Route('/user/delete/{id}', name: 'delete_user')]
     public function delete(
         Request                $request,
         EntityManagerInterface $entityManager,
@@ -75,10 +75,6 @@ class UserController extends AbstractController
 
         // Vérifie la validité du jeton CSRF
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('token'))) {
-            $commentaires = $user->getRelation();
-            foreach ($commentaires as $commentaire){
-                $entityManager->remove($commentaire);
-            }
 
             // Supprimer l'utilisateur
             $entityManager->remove($user);

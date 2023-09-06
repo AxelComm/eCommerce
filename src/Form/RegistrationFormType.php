@@ -22,13 +22,22 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class,[
-                'label' => 'Nom : '
+                'label' => 'Nom : ',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('prenom', TextType::class,[
-                'label' => 'Prenom : '
+                'label' => 'Prenom : ',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('pseudo', TextType::class,[
-                'label' => 'Pseudo : '
+                'label' => 'Pseudo : ',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image de profil : ',
@@ -37,25 +46,47 @@ class RegistrationFormType extends AbstractType
                 // Autres options éventuelles
             ])
             ->add('naissance', DateType::class,[
-                'label' => 'Date de naissance :'
+                'label' => 'Date de naissance :',
+                'years' => range(1940, date('Y')),
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('rue_adresse', TextType::class, [
-                'label' => 'Nom de rue :'
+                'label' => 'Nom de rue :',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('numero_adresse',TextType::class, [
-                'label'=> 'Numero de rue :'
+                'label'=> 'Numero de rue :',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ] )
             ->add('cp_adresse', TextType::class, [
-                'label' => 'Code postal : '
+                'label' => 'Code postal : ',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('ville_adresse',TextType::class, [
-                'label' => 'Ville :'
+                'label' => 'Ville :',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('pays_adresse', TextType::class, [
-                'label' => 'Pays :'
+                'label' => 'Pays :',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('email', TextType::class,[
-                'label' => 'Email : '
+                'label' => 'Email : ',
+                'constraints' => [
+                    new NotBlank()
+                ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => "Accords d'utilisation",
